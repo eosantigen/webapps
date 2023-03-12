@@ -1,2 +1,21 @@
-__pycache__
+*.retry
+.vscode/
+
+# MACOS
 .DS_Store
+
+# Local .terraform
+**/.terraform/*
+**/.terraform.lock.hcl
+**/terraform.tfstate.d/*
+
+# Django
+__pycache__
+db.sqlite3
+migrations/
+
+.vagrant
+.venv
+# The file used by pyenv:
+.python-version
+
