@@ -1,8 +1,8 @@
-# tarot.rb
+# ruby_tarot.rb
 
 require 'sinatra/base'
 
-class Tarot_App < Sinatra::Base
+class Ruby_Tarot < Sinatra::Base
 
   get '/symbol/:symbol' do
     symbol = params['symbol']
