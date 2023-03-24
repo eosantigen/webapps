@@ -9,7 +9,3 @@ db.sqlite3
 migrations/
 
 .venv
-# The file used by pyenv:
-.python-version
-# The file used by rbenv:
-.ruby-version
