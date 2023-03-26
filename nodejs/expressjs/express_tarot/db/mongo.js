@@ -1,4 +1,4 @@
-const mongodb = require('mongoose');
+const mongoose = require('mongoose');
 const mongooseURI = 'mongodb://localhost/tarot_app'
 const mongooseOptions = {
   serverSelectionTimeoutMS: 3000,
@@ -11,9 +11,9 @@ const mongooseOptions = {
 async function mongoDBConnection() {
 
   try {
-    await mongodb.connect(mongooseURI, mongooseOptions)
+    await mongoose.connect(mongooseURI, mongooseOptions)
 
-    mongodb.connection.on('error', err => {
+    mongoose.connection.on('error', err => {
       console.log(err)
     })
   } catch (error) {
