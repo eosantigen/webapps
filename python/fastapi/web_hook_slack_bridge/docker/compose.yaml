@@ -1,0 +1,11 @@
+services:
+  logbook:
+    image: fastapi/webhookslackbridge
+    build:
+      context: ../
+      dockerfile: docker/Dockerfile
+    container_name: webhookslackbridge
+    hostname: webhookslackbridge
+    expose:
+      - 8000
+    network_mode: host
