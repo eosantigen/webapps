@@ -1,5 +1,4 @@
 from django.shortcuts import render, redirect, HttpResponse
-from django.template.response import TemplateResponse
 from django.utils.timezone import now
 from .models import Task, Tag
 from .forms import TaskForm, LoginForm
@@ -32,13 +31,13 @@ class TaskView(View):
                 f.tags = copy['tags']
                 f.time = now().ctime()#.__format__("%b %d %Y - %H:%M")
                 f.save()
-            else: 
+            else:
                 f = form.save(commit=False)
                 f.tags = request.POST.getlist('tags')
                 f.time = now().ctime()#.__format__("%b %d %Y - %H:%M")
                 f.save()
         else:
-            return HttpResponse(self.get(request), content={'messages': 'ERROR'})
+            messages.error(request=request, message='Error: Too long task description.') # TODO - fix on the model side sync
         return redirect('/logbook')
 
 

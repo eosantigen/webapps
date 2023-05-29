@@ -3,7 +3,7 @@
 {{ context | json_script:"data" }}
 {{ tags | json_script:"tags" }}
 
-{% if messages %}
+
 <div id="navbar" style="overflow: hidden;">
   <b-container>
   <b-navbar type="dark" toggleable="lg" variant="dark" style="border-radius: 0 0 30px 30px; border: 2px solid;" fixed="top"> <!-- fixed="top" expands it fully. -->
@@ -14,9 +14,15 @@
       <b-navbar-nav>
         {% include "guidelines.html" %}
         <b-nav-item href="#" title="Work In Progress..." disabled>Stats</b-nav-item>
-        {{ messages }}
+        {% if messages %}
+        <ul class="messages"> # TODO
+            {% for message in messages %}
+            <li  {% if message.tags %} class=" {{ message.tags }} " {% endif %}> {{ message }} </li>
+            {% endfor %}
+        </ul>
+        {% endif %}
       </b-navbar-nav>
-      {% endif %}
+
 
       <!-- Right aligned nav items -->
       <b-navbar-nav class="ml-auto">
@@ -111,7 +117,7 @@
       el: '#form',
       computed: {
         taskState() {
-          return this.task.length > 33 ? true : null
+          return this.task.length <= 100 ? true : false;
         }
       },
       data() {
