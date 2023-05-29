@@ -15,12 +15,18 @@ RUN apt update && \
 
 FROM python:3.10.4-slim
 
-RUN adduser --system --no-create-home --disabled-password eosantigen
+ENV USER eosantigen
 
-USER eosantigen
+RUN adduser --system --no-create-home --disabled-password ${USER}
+
+RUN apt update && \
+    apt install sqlite3
+
+USER ${USER}
 
 WORKDIR /apps/devops-logbook
 
-COPY --from=builder /build/ .
+COPY --from=builder --chown=eosantigen:eosantigen /build/ .
+COPY ./docker/entrypoint.sh /apps/devops-logbook/entrypoint.sh
 
-CMD [ "./manage.py", "runserver" ]
+ENTRYPOINT [ "/apps/devops-logbook/entrypoint.sh" ]
