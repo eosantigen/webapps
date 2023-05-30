@@ -23,9 +23,9 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-je(o!u*k2fv8+aapu@fzr++nq7d@wu!-o))^uqn@c^_5)zl2(0'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['localhost']
 
 
 # Application definition
@@ -78,7 +78,6 @@ WSGI_APPLICATION = 'devops.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ATOMIC_REQUESTS': True,
         'ENGINE': 'django.db.backends.postgresql',
         'NAME': 'postgres',
         'USER': 'postgres',

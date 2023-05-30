@@ -1,4 +1,4 @@
-from django.shortcuts import render, redirect, HttpResponse
+from django.shortcuts import render
 from django.utils.timezone import now
 from .models import Task, Tag
 from .forms import TaskForm, LoginForm
@@ -9,54 +9,60 @@ from django.contrib import messages
 class TaskView(View):
 
     form = TaskForm
-    template_name = "main.html"
+    template_name = 'main.html'
 
-    def get(self, request):
-
+    def context(self, request):
         model = Task.objects.all().order_by('-time').values()
         tags = Tag.objects.values().all()
         context = {'context': list(model), 'form': self.form, 'tags': list(tags)}
 
         return render(request=request, template_name=self.template_name, context=context)
 
+
+    def get(self, request):
+        return self.context(request)
+
     
     def post(self, request):
-
         form = self.form(request.POST)
         if form.is_valid():
-            if 'tags' not in request.POST:
-                copy = request.POST.copy()
-                copy['tags'] = '-'
-                f = form.save(commit=False)
-                f.tags = copy['tags']
-                f.time = now().ctime()#.__format__("%b %d %Y - %H:%M")
-                f.save()
-            else:
-                f = form.save(commit=False)
-                f.tags = request.POST.getlist('tags')
-                f.time = now().ctime()#.__format__("%b %d %Y - %H:%M")
-                f.save()
+            try:
+                if 'tags' not in request.POST:
+                    copy = request.POST.copy()
+                    copy['tags'] = '-'
+                    f = form.save(commit=False)
+                    f.tags = copy['tags']
+                    f.time = now().ctime()#.__format__("%b %d %Y - %H:%M")
+                    f.save()
+                else:
+                    f = form.save(commit=False)
+                    f.tags = request.POST.getlist('tags')
+                    f.time = now().ctime()#.__format__("%b %d %Y - %H:%M")
+                    f.save()
+            except:
+                messages.error(request=request, message='Error on saving entry.')
         else:
-            messages.error(request=request, message='Error: Too long task description.') # TODO - fix on the model side sync
-        return redirect('/logbook')
+            messages.error(request=request, message='Error - invalid form data.') # TODO this is rareoly gonna happen if never.
+        return self.get(request)
 
 
-# def user_login(request):
+class LoginView(View):
 
-#     print(request.method, request.body, request.get_host(), request.get_full_path())
-    
-#     if request.method == 'POST':
-#         form = LoginForm(request.POST)
-#         if form.is_valid():
-#             clean_data = form.cleaned_data
-#             user = authenticate(request, username=clean_data['username'], password=clean_data['password'])
-#             if user is None:
-#                 return render(request, 'login.html', {'user': 'invalid user'})
-#             elif user.is_active:
-#                 login(request, user)
-#                 return main(request)
-#             else:
-#                 return render(request, 'login.html', {'user': 'invalid - please check your credentials'})
-#     else:
-#         form = LoginForm()
-#         return render(request, 'login.html', {'login_form': form})
+    form = LoginForm
+    template_name = 'login.html'
+
+    def get(self, request):
+        return render(request, self.template_name)
+
+    def post(self, request):
+        form = LoginForm(request.POST)
+        if form.is_valid():
+            clean_data = form.cleaned_data
+            user = authenticate(request, username=clean_data['username'], password=clean_data['password'])
+            if user is None:
+                return render(request, self.template_name, messages.error(request=request, message='Invalid User.'))
+            elif user.is_active:
+                login(request, user)
+                return self.get(request)
+            else:
+                return render(request, self.template_name, messages.error(request=request, message='Invalid Credentials.'))

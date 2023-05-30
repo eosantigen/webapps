@@ -15,18 +15,16 @@
         {% include "guidelines.html" %}
         <b-nav-item href="#" title="Work In Progress..." disabled>Stats</b-nav-item>
         {% if messages %}
-        <ul class="messages"> # TODO
             {% for message in messages %}
             <li  {% if message.tags %} class=" {{ message.tags }} " {% endif %}> {{ message }} </li>
             {% endfor %}
-        </ul>
         {% endif %}
       </b-navbar-nav>
 
 
       <!-- Right aligned nav items -->
       <b-navbar-nav class="ml-auto">
-        <b-nav-item href="logout" title="Click to logout">Hi, {{user}}</b-nav-item>
+        <b-nav-item href="logout" title="Click to logout">Hi, {{ user }}</b-nav-item>
       </b-navbar-nav>
     </b-collapse>
   </b-navbar>
@@ -41,7 +39,7 @@
             {% csrf_token %}
             <b-input-group>
               <b-form-input type="text" name="user" maxlength="100" required id="id_user" v-model="user" placeholder="User..." :state="taskState"></b-form-input>
-              <b-form-input type="text" name="task" maxlength="100" required id="id_task" v-model="task" placeholder="Task.." :state="taskState"></b-form-input>
+              <b-form-input type="text" name="task" maxlength="200" required id="id_task" v-model="task" placeholder="Task.." :state="taskState"></b-form-input>
               <b-button type="submit" variant="info">Save</b-button>
               <b-button type="reset" variant="dark">Clear</b-button>
         </b-col>
@@ -117,7 +115,7 @@
       el: '#form',
       computed: {
         taskState() {
-          return this.task.length <= 100 ? true : false;
+          return this.task.length == 200 ? true : null;
         }
       },
       data() {

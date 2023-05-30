@@ -1,6 +1,6 @@
 from django.urls import path
 # from .views import main, user_login
-from .views import TaskView
+from .views import TaskView, LoginView
 
 # urlpatterns = [
 #   path('', main, name='main'),
@@ -9,4 +9,5 @@ from .views import TaskView
 
 urlpatterns = [
     path('', TaskView.as_view()),
+    path('login', LoginView.as_view())
 ]

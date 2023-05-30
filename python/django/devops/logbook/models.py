@@ -3,9 +3,9 @@ from django.db import models
 
 class Task(models.Model):
 
-    user = models.CharField(max_length=30)
+    user = models.CharField(max_length=100)
     time = models.CharField(max_length=30)
-    task = models.CharField(max_length=500)
+    task = models.CharField(max_length=200)
     tags = models.CharField(max_length=200, default="-", null=True)
 
     class Meta:
