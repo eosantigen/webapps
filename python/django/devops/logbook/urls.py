@@ -8,6 +8,6 @@ from .views import TaskView, LoginView
 # ]
 
 urlpatterns = [
-    path('', TaskView.as_view()),
-    path('login', LoginView.as_view())
+    path('', TaskView.as_view(), name='task_view'),
+    path('login', LoginView.as_view(), name='login_view')
 ]

@@ -48,7 +48,7 @@
        <b-col>
         {% for tag in tags %}
           <label for="{{tag.id_for_label}}"><p></p>
-            <b-form-checkbox-group name="tags">
+            <b-form-checkbox-group name="tags" buttons button-variant="info" size="sm" state="true">
               <b-form-checkbox name="tags" id="{{id_for_label}}" value="{{tag.tag}}">{{tag.tag}}</b-form-checkbox>
             </b-form-checkbox-group>
           </label>

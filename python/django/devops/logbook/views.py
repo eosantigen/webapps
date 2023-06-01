@@ -1,5 +1,4 @@
-from django.shortcuts import render
-from django.utils.timezone import now
+from django.shortcuts import render, redirect
 from .models import Task, Tag
 from .forms import TaskForm, LoginForm
 from django.contrib.auth import authenticate, login
@@ -12,17 +11,18 @@ class TaskView(View):
     template_name = 'main.html'
 
     def context(self, request):
-        model = Task.objects.all().order_by('-time').values()
+        model = Task.objects.all().values()
         tags = Tag.objects.values().all()
+
+        for timestamp in model:
+            timestamp['time'] = str(timestamp.get('time')).replace('T', ' ')
         context = {'context': list(model), 'form': self.form, 'tags': list(tags)}
 
         return render(request=request, template_name=self.template_name, context=context)
 
-
     def get(self, request):
         return self.context(request)
 
-    
     def post(self, request):
         form = self.form(request.POST)
         if form.is_valid():
@@ -32,18 +32,18 @@ class TaskView(View):
                     copy['tags'] = '-'
                     f = form.save(commit=False)
                     f.tags = copy['tags']
-                    f.time = now().ctime()#.__format__("%b %d %Y - %H:%M")
+                    print(f.tags)
                     f.save()
                 else:
                     f = form.save(commit=False)
                     f.tags = request.POST.getlist('tags')
-                    f.time = now().ctime()#.__format__("%b %d %Y - %H:%M")
                     f.save()
-            except:
+            except Exception as exception:
+                print(exception) # TODO change to logging module.
                 messages.error(request=request, message='Error on saving entry.')
         else:
-            messages.error(request=request, message='Error - invalid form data.') # TODO this is rareoly gonna happen if never.
-        return self.get(request)
+            messages.error(request=request, message='Error - invalid form data.') # TODO this is rarely gonna happen if never.
+        return redirect(to='task_view')
 
 
 class LoginView(View):
