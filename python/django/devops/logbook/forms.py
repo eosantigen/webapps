@@ -11,10 +11,7 @@ class TaskForm(ModelForm):
         fields = ['user', 'task', 'tags']
         # template_name = 'main.html'
         
-    tags = ModelMultipleChoiceField(
-    queryset=Tag.objects.all(),
-    widget=CheckboxSelectMultiple(), required=False,
-    )
+    tags = ModelMultipleChoiceField(queryset=Tag.objects.all(), widget=CheckboxSelectMultiple(), required=False)
 
 class LoginForm(Form):
     username = forms.CharField()
