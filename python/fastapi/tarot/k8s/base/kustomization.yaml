@@ -1,0 +1,6 @@
+commonLabels:
+  app: tarot
+
+resources:
+  - deployment.yaml
+  - ingress.yaml

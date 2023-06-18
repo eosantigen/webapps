@@ -1,0 +1,17 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: tarot
+spec:
+  selector:
+    matchLabels:
+      app: tarot
+  template:
+    metadata:
+      labels:
+        app: tarot
+    spec:
+      containers:
+      - name: tarot
+        ports:
+        - containerPort: 8000

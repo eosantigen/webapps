@@ -1,0 +1,18 @@
+commonLabels:
+  env: devanet
+
+replicas:
+- name: tarot
+  count: 1
+
+patchesStrategicMerge:
+- container_resources.yaml
+- ingress.yaml
+
+namespace: webapps
+
+images:
+- name: nginx:latest
+
+bases:
+  - "../../base"
