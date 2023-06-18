@@ -1,6 +1,6 @@
 resources:
-- deployment.yaml
-- service.yaml
+- ../../base/deployment.yaml
+- ../../base/service.yaml
 - ingress.yaml
 
 patches:
