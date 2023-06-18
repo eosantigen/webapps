@@ -1,8 +1,3 @@
-resources:
-- deployment.yaml
-- ingress.yaml
-- ../../base
-
 replicas:
 - name: tarot
   count: 1
@@ -13,9 +8,7 @@ images:
 - name: nginx
   newTag: 1.21.0
 
-patches:
-- path: container_resources.yaml
-  target:
-    kind: Deployment
-    name: tarot
-    namespace: webapps
+resources:
+- deployment.yaml
+- ingress.yaml
+- ../../base

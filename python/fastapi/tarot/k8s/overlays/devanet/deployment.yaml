@@ -14,3 +14,10 @@ spec:
       containers:
       - name: tarot
         image: nginx:latest
+        resources:
+          requests:
+            memory: 50Mi
+            cpu: 50m
+          limits:
+            memory: 128Mi
+            cpu: 100m
