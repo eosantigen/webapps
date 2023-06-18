@@ -11,4 +11,3 @@ images:
 resources:
 - deployment.yaml
 - ingress.yaml
-- ../../base
