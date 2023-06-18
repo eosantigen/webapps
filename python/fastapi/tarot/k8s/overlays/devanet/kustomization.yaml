@@ -1,6 +1,5 @@
 resources:
-- ../../base
-- service.yaml
+- deployment.yaml
 - ingress.yaml
 
 replicas:
@@ -14,3 +13,7 @@ images:
 
 patches:
 - path: container_resources.yaml
+  target:
+    kind: Deployment
+    name: tarot
+    namespace: webapps
