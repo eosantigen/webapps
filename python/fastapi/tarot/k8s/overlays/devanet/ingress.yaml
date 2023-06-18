@@ -6,7 +6,7 @@ metadata:
     name: tarot
 spec:
   rules:
-  - host: tarot
+  - host: host.devanet
     http:
       paths:
       - pathType: Prefix

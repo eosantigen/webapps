@@ -3,4 +3,4 @@ commonLabels:
 
 resources:
   - deployment.yaml
-  - ingress.yaml
+  - service.yaml

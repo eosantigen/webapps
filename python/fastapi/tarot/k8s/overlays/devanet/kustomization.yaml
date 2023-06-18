@@ -1,25 +1,21 @@
 bases:
   - "../../base"
 
-patchesJson6902:
-  - target:
-      version: v1
-      kind: Ingress
-      name: tarot
-    patch: |-
-      - op: replace
-        path: /spec/rules/host
-        value: tarot.devanet
+resources:
+- ingress.yaml
 
-patchesStrategicMerge:
-- container_resources.yaml
-
-commonLabels:
-  env: devanet
+patches:
+- path: container_resources.yaml
+  target:
+    kind: Deployment
+    name: tarot
 
 replicas:
 - name: tarot
   count: 1
+
+commonLabels:
+  env: devanet
 
 namespace: webapps
 
