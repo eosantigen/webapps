@@ -1,6 +1,7 @@
 resources:
 - deployment.yaml
 - ingress.yaml
+- container_resources.yaml
 
 replicas:
 - name: tarot
