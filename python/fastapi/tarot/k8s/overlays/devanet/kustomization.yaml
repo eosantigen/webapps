@@ -1,7 +1,7 @@
 resources:
 - deployment.yaml
 - ingress.yaml
-- container_resources.yaml
+- ../../base
 
 replicas:
 - name: tarot
@@ -10,7 +10,8 @@ replicas:
 namespace: webapps
 
 images:
-- name: nginx:alpine-slim
+- name: nginx
+  newTag: 1.21.0
 
 patches:
 - path: container_resources.yaml
