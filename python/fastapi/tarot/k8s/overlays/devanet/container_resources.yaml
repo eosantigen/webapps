@@ -1,7 +1,9 @@
-resources:
-  requests:
-    memory: 128Mi
-    cpu: 100m
-  limits:
-    memory: 128Mi
-    cpu: 100m
+spec:
+  containers:
+    resources:
+      requests:
+        memory: 128Mi
+        cpu: 100m
+      limits:
+        memory: 128Mi
+        cpu: 100m
