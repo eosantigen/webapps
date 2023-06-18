@@ -3,20 +3,17 @@ resources:
 - ../../base/service.yaml
 - ingress.yaml
 
-patches:
-- path: container_resources.yaml
-  target:
-    kind: Deployment
-    name: tarot
-
 replicas:
 - name: tarot
   count: 1
-
-commonLabels:
-  env: devanet
 
 namespace: webapps
 
 images:
 - name: nginx:alpine-slim
+
+patches:
+- path: container_resources.yaml
+  target:
+    kind: Deployment
+    name: tarot
