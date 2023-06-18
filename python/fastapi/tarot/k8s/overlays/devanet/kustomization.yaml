@@ -1,3 +1,7 @@
+resources:
+- deployment.yaml
+- ingress.yaml
+
 replicas:
 - name: tarot
   count: 1
@@ -7,7 +11,3 @@ namespace: webapps
 images:
 - name: nginx
   newTag: 1.21.0
-
-resources:
-- deployment.yaml
-- ingress.yaml
