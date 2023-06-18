@@ -1,12 +1,11 @@
-spec:
-  rules:
-  - host: tarot.devanet
-    http:
-      paths:
-      - pathType: Prefix
-        path: "/"
-        backend:
-          service:
-            name: tarot
-            port: 
-              number: 8000
+rules:
+- host: tarot.devanet
+  http:
+    paths:
+    - pathType: Prefix
+      path: "/"
+      backend:
+        service:
+          name: tarot
+          port: 
+            number: 8000
