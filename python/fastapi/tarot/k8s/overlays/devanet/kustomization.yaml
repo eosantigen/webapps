@@ -11,3 +11,6 @@ namespace: webapps
 images:
 - name: nginx
   newTag: 1.21.0
+
+patches:
+- path: patch_resources.yaml
