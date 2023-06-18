@@ -6,7 +6,7 @@ metadata:
     name: tarot
 spec:
   rules:
-  - host: HOST
+  - host: tarot
     http:
       paths:
       - pathType: Prefix
