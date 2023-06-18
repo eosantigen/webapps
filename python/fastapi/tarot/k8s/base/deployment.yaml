@@ -16,4 +16,3 @@ spec:
         image: nginx:latest
         ports:
         - containerPort: 8000
-

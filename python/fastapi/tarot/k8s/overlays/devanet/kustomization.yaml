@@ -13,7 +13,3 @@ images:
 
 patches:
 - path: container_resources.yaml
-  target:
-    kind: Deployment
-    name: tarot
-    namespace: webapps

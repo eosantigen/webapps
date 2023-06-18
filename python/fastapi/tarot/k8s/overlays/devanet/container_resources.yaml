@@ -1,11 +1,22 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: tarot
 spec:
+  selector:
+    matchLabels:
+      app: tarot
   template:
+    metadata:
+      labels:
+        app: tarot
     spec:
-    containers:
-      resources:
-        requests:
-          memory: 128Mi
-          cpu: 100m
-        limits:
-          memory: 128Mi
-          cpu: 100m
+      containers:
+      - name: tarot
+        resources:
+          requests:
+            memory: 128Mi
+            cpu: 100m
+          limits:
+            memory: 128Mi
+            cpu: 100m
