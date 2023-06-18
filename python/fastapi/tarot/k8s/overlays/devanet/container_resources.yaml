@@ -13,6 +13,7 @@ spec:
     spec:
       containers:
       - name: tarot
+        image: nginx:latest
         resources:
           requests:
             memory: 128Mi
