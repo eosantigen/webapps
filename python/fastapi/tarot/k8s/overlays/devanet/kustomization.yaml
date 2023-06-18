@@ -12,7 +12,7 @@ patchesStrategicMerge:
 namespace: webapps
 
 images:
-- name: nginx:latest
+- name: nginx:alpine-slim
 
 bases:
   - "../../base"
