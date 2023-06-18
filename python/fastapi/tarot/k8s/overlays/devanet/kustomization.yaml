@@ -1,5 +1,6 @@
 resources:
 - ../../base
+- ../../base/service.yaml
 - ingress.yaml
 
 replicas:
