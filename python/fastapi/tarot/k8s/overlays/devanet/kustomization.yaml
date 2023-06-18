@@ -4,7 +4,7 @@ resources:
 
 replicas:
 - name: tarot
-  count: 1
+  count: 2
 
 namespace: webapps
 
