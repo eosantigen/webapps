@@ -38,7 +38,6 @@
         <b-col>
             {% csrf_token %}
             <b-input-group>
-              <b-form-input type="text" name="user" maxlength="100" required id="id_user" v-model="user" placeholder="User..." :state="taskState"></b-form-input>
               <b-form-input type="text" name="task" maxlength="200" required id="id_task" v-model="task" placeholder="Task.." :state="taskState"></b-form-input>
               <b-button type="submit" variant="info">Save</b-button>
               <b-button type="reset" variant="dark">Clear</b-button>

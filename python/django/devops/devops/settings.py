@@ -11,6 +11,8 @@ https://docs.djangoproject.com/en/4.1/ref/settings/
 """
 
 from pathlib import Path
+import ldap
+from django_auth_ldap.config import LDAPSearch
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -25,7 +27,7 @@ SECRET_KEY = 'django-insecure-je(o!u*k2fv8+aapu@fzr++nq7d@wu!-o))^uqn@c^_5)zl2(0
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['localhost']
+ALLOWED_HOSTS = ['localhost', '127.0.0.1']
 
 
 # Application definition
@@ -52,7 +54,18 @@ MIDDLEWARE = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
 
+AUTHENTICATION_BACKENDS = [
+    'django_auth_ldap.backend.LDAPBackend',
+]
+
+AUTH_LDAP_BIND_DN = 'cn=deva,dc=devanet'
+AUTH_LDAP_BIND_PASSWORD = 'deva'
+AUTH_LDAP_USER_SEARCH = LDAPSearch(
+    'dc=devanet', ldap.SCOPE_SUBTREE, "(cn=%(user)s)")
+
 ROOT_URLCONF = 'devops.urls'
+
+LOGIN_URL = '/logbook/login'
 
 TEMPLATES = [
     {

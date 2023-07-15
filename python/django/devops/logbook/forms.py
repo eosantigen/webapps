@@ -9,7 +9,7 @@ class TaskForm(ModelForm):
 
         model = Task
         fields = ['user', 'task', 'tags']
-        # template_name = 'main.html'
+        exclude = ['user',]
         
     tags = ModelMultipleChoiceField(queryset=Tag.objects.all(), widget=CheckboxSelectMultiple(), required=False)
 
