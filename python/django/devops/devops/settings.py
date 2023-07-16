@@ -65,7 +65,7 @@ AUTH_LDAP_USER_SEARCH = LDAPSearch(
 
 ROOT_URLCONF = 'devops.urls'
 
-LOGIN_URL = '/logbook/login'
+LOGIN_URL = '/login'
 
 TEMPLATES = [
     {
