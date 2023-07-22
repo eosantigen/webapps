@@ -48,7 +48,6 @@ class TaskView(LoginRequiredMixin, View):
             messages.error(request=request, message='Error - invalid form data.') # TODO this is rarely gonna happen if never.
         return redirect(to='task_view')
 
-
 class LoginView(View):
 
     form = LoginForm
@@ -70,8 +69,8 @@ class LoginView(View):
             else:
                 return render(request, self.template_name, messages.error(request=request, message='Invalid Credentials.'))
             
-            
 class LogoutView(View):
+
     def get(self, request):
         logout(request)
         return redirect(to='login_view')

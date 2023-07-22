@@ -14,6 +14,8 @@
       <b-navbar-nav>
         {% include "guidelines.html" %}
         <b-nav-item href="#" title="Work In Progress..." disabled>Stats</b-nav-item>
+        <!-- <b-nav-item disabled>Page generated at: {% now "DATETIME_FORMAT" %}</b-nav-item> -->
+        <!-- The following if messages is rendered fugly.. -->
         {% if messages %}
             {% for message in messages %}
             <li  {% if message.tags %} class=" {{ message.tags }} " {% endif %}> {{ message }} </li>
@@ -47,7 +49,7 @@
        <b-col>
         {% for tag in tags %}
           <label for="{{tag.id_for_label}}"><p></p>
-            <b-form-checkbox-group name="tags" buttons button-variant="info" size="sm" state="true">
+            <b-form-checkbox-group name="tags" checkbox size="sm" state="true">
               <b-form-checkbox name="tags" id="{{id_for_label}}" value="{{tag.tag}}">{{tag.tag}}</b-form-checkbox>
             </b-form-checkbox-group>
           </label>

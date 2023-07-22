@@ -11,18 +11,18 @@ body {
     justify-content: center;
     align-items: center; */
     margin: 50pt;
-    color: cyan;
+    color: rgb(10, 221, 249);
     text-align: center;
 }
 
 pre {
-    color: azure;
+    color: rgb(10, 221, 249);
     text-align: center;
     margin: 60pt;
 }
 
 footer {
-    color: azure;
+    color: rgb(10, 221, 249);
     text-align: center;
     font-size: 12pt;
 }
@@ -32,13 +32,13 @@ footer {
 }
 
 .login-page footer {
-    color: azure;
+    color: rgb(10, 221, 249);
     text-align: center;
     font-size: 12pt;
     margin: 50pt;
 }
 
 #form {
-    color: azure;
+    color: rgb(10, 221, 249);
     margin-top: 100pt;
 }
